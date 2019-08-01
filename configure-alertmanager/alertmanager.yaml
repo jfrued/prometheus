@@ -3,7 +3,7 @@ global:
   smtp_smarthost: 'smtp.163.com:25'
   smtp_from: 'kongsvip@163.com'
   smtp_auth_username: 'kongsvip@163.com'
-  smtp_auth_password: 'kong163'
+  smtp_auth_password: '邮箱授权码'
   smtp_hello: '163.com'
   smtp_require_tls: false
 route:
