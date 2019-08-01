@@ -1,0 +1,27 @@
+global:
+  resolve_timeout: 5m
+  smtp_smarthost: 'smtp.163.com:25'
+  smtp_from: 'kongsvip@163.com'
+  smtp_auth_username: 'kongsvip@163.com'
+  smtp_auth_password: 'kong163'
+  smtp_hello: '163.com'
+  smtp_require_tls: false
+route:
+  group_by: ['job', 'severity']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 12h
+  receiver: default
+  routes:
+  - receiver: webhook
+    match:
+      alertname: CoreDNSDown
+receivers:
+- name: 'default'
+  email_configs:
+  - to: 'wulilin@foresee.com.cn'
+    send_resolved: true
+- name: 'webhook'
+  webhook_configs:
+  - url: 'https://oapi.dingtalk.com/robot/send?access_token=7a60f9d219ed671da9641c7daf756f9f2c116474f7fb72da2562d71c8164c75e'
+    send_resolved: true
